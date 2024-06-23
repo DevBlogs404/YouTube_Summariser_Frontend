@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "Yotube Summariser",
+    "description": "Summarise YouTube videos with ease! Made using Vite + Reactjs and Typescript.",
+    "version": "1.0",
+    "permissions": ["tabs","bookmarks","activeTab","declarativeContent","scripting","cookies"],
+    "host_permissions":["http://*/*","https://*/*"],
+
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": {
+        "16": "logo.png",
+        "48": "logo.png",
+        "128": "logo.png"
+      }
+    },
+    "icons": {
+      "16": "logo.png",
+      "48": "logo.png",
+      "128": "logo.png"
+    }
+  }
+  
