@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shine {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.animate-shine {
+  animation: shine 1.5s infinite;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.animate-wave {
+  animation: wave 2s linear infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0px; /* This will remove the scrollbar */
+  background: transparent; /* Optional: make scrollbar transparent */
+}
+
+.placeholder-black::placeholder {
+  color: black;
+}
