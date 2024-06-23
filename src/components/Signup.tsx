@@ -27,7 +27,7 @@ const Signup = () => {
       const { username, email, password } = data;
 
       const response = await axios.post(
-        `http://localhost:6969/api/v1/auth/register`,
+        `http://localhost:8000/api/v1/auth/register`,
         { username, email, password }
       );
       if (response.status === 200) {

@@ -14,7 +14,7 @@ const Summary = () => {
     // Perform summarization logic here, for now, let's just display the URL
     try {
       const response = await axios.get(
-        `http://localhost:6969/api/v1/summary/get-summary?url=${youtubeUrl}`
+        `http://localhost:8000/api/v1/summary/get-summary?url=${youtubeUrl}`
       );
       // console.log(response.data);
 
@@ -38,24 +38,24 @@ const Summary = () => {
     );
   }, []);
 
-  useEffect(() => {
-    if (youtubeUrl) {
-      summarizeVideo();
-    }
-  }, [youtubeUrl]);
+  // useEffect(() => {
+  //   if (youtubeUrl) {
+  //     summarizeVideo();
+  //   }
+  // }, [youtubeUrl]);
 
   const copyToClipboard = () => {
     navigator.clipboard
       .writeText(summarizedText)
       .then(() => setCopyFeedback("Copied!"))
-      .catch(() => setCopyFeedback("Copy failed. Please try again."));
+      .catch(() => setCopyFeedback("Copying failed. Please try again."));
   };
 
   return (
     <div className="bg-gray-900 flex justify-center items-center  h-[500px]">
       <div className="bg-white shadow-md rounded-lg p-8 h-[480px] w-[480px] ">
         {/* Input and Button */}
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-4 gap-2 relative">
           <input
             type="text"
             value={youtubeUrl}
@@ -66,27 +66,28 @@ const Summary = () => {
           <button
             onClick={summarizeVideo}
             disabled={!youtubeUrl}
-            className="ml-4 px-6 py-2 bg-blue-700 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+            className="ml-4 px-6 py-2 bg-blue-700 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 disabled:opacity-50"
           >
             Summarize
           </button>
-        </div>
-        {/* Summarized Text */}
-        <div className="text-sm overflow-auto custom-scrollbar relative  h-[24rem]">
-          {summarizedText}
           <button
             onClick={copyToClipboard}
-            className="absolute bottom-4 right-4 p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none"
+            disabled={!summarizedText}
+            className=" p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none disabled:opacity-50"
             title="Copy Summary"
           >
             <MdContentCopy size={24} />
           </button>
           {/* Copy Feedback */}
-          {copyFeedback && (
-            <p className="text-xs text-gray-500 absolute bottom-10 right-4">
+          {summarizedText && copyFeedback && (
+            <p className="text-xs text-gray-500 absolute top-0 right-2">
               {copyFeedback}
             </p>
           )}
+        </div>
+        {/* Summarized Text */}
+        <div className="text-sm overflow-auto custom-scrollbar relative  h-[24rem]">
+          {summarizedText}
         </div>
       </div>
     </div>
